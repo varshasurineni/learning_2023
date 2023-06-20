@@ -1,0 +1,41 @@
+#include <stdio.h>
+
+// Generic swap function
+void swap(void* ptr1, void* ptr2, size_t size) {
+    // Temporary buffer to hold the value during swapping
+    char temp[size];
+
+    // Copy the value from ptr1 to temp
+    memcpy(temp, ptr1, size);
+
+    // Copy the value from ptr2 to ptr1
+    memcpy(ptr1, ptr2, size);
+
+    // Copy the value from temp to ptr2
+    memcpy(ptr2, temp, size);
+}
+
+int main() {
+    int a = 5, b = 10;
+    printf("Before swap: a = %d, b = %d\n", a, b);
+
+    // Swap two integers
+    swap(&a, &b, sizeof(int));
+    printf("After swap: a = %d, b = %d\n", a, b);
+
+    float x = 2.5, y = 7.8;
+    printf("Before swap: x = %.2f, y = %.2f\n", x, y);
+
+    // Swap two floats
+    swap(&x, &y, sizeof(float));
+    printf("After swap: x = %.2f, y = %.2f\n", x, y);
+
+    char c1 = 'A', c2 = 'B';
+    printf("Before swap: c1 = %c, c2 = %c\n", c1, c2);
+
+    // Swap two characters
+    swap(&c1, &c2, sizeof(char));
+    printf("After swap: c1 = %c, c2 = %c\n", c1, c2);
+
+    return 0;
+}
